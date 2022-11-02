@@ -80,7 +80,7 @@ function addExerciseToUserByIdHandler(req, res) {
         let userJson = user.toJSON();
         userJson.description = ex.description;
         userJson.duration = ex.duration;
-        userJson.date = ex.date;
+        userJson.date = ex.date.toDateString();
         res.json(userJson);
       })
       .catch(err => handleError(err, res));
@@ -151,7 +151,7 @@ app.route('/api/users')
   .get(getAllUsersHandler)
   .post(addUserHandler);
 
-app.route('/api/users/:_id?/exercise')
+app.route('/api/users/:_id?/exercises')
   .post(addExerciseToUserByIdHandler);
 
 app.route('/api/users/:_id?/logs')
