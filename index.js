@@ -132,7 +132,7 @@ function getExerciseLogsHandler(req, res) {
           .then(doc2 => {
             let exercises = doc2;
             exercises = exercises.map(x => {
-              x._doc.date = x._doc.date.toDateString();
+              x._doc.date = x._doc.date.toDateString("en-us", {timeZone: "Asia/Kuala_Lumpur"});
               return x;
             });
             let userJson = user.toJSON();
