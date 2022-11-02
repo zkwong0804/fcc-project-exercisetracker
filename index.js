@@ -130,7 +130,11 @@ function getExerciseLogsHandler(req, res) {
       exerciseQuery
         .exec()
           .then(doc2 => {
-            const exercises = doc2;
+            let exercises = doc2;
+            exercises = exercises.map(x => {
+              x._doc.date = x._doc.date.toDateString();
+              return x;
+            });
             let userJson = user.toJSON();
             userJson.count = exercises.length
             userJson.log = exercises;
